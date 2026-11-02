@@ -27,7 +27,7 @@ Before release, preview the export with a local static server and review desktop
 
 ## Deployment readiness
 
-Published on November 2, 2026 on Cloudflare Pages using Direct Upload. The custom domain is active with SSL enabled. The GitHub Actions workflow builds and deploys pushes to `main` once the Cloudflare repository secret is configured. Pull requests run checks without deployment.
+Published on November 2, 2026 on Cloudflare Pages using Direct Upload. The custom domain is active with SSL enabled. GitHub Actions checks pushes and pull requests. Cloudflare Pages builds and deploys through its GitHub app; see `docs/deployment.md` for connection status.
 
 Release maintenance:
 

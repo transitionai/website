@@ -1,4 +1,4 @@
-name: Check and deploy website
+name: Check website
 on:
   push:
     branches: [main]
@@ -25,10 +25,3 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - name: Lint, typecheck, build, and verify Markdown routes
         run: pnpm check
-      - name: Deploy production
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-        uses: cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0 # v4
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy out --project-name=transitionai --branch=main

@@ -1,37 +1,30 @@
-# Cloudflare Pages deployment
+# Deployment
 
-The website is a Next.js static export. Upload only `out/`; do not upload the source directory, application transcript, or local environment files.
+Source: https://github.com/transitionai/website
+Website: https://transitioned.dev
 
-- Project: `transitionai`
-- Pages address: `https://transitionai.pages.dev`
-- Custom domain: `transitioned.dev`
-- Hosting: Cloudflare Pages, static assets only; no Functions, Workers, database, or paid service required.
-- Delivery: GitHub Actions builds and uploads to the existing Direct Upload project. Production deployment requires the repository secret described below.
+## Git-connected Cloudflare Pages
 
-## Release
+The target deployment uses the installed Cloudflare Workers and Pages GitHub app. Cloudflare builds commits pushed to `main`; no laptop process or GitHub API-token secret is required.
 
-Use Node 22.13–22.x and the pinned pnpm version, then run `pnpm build`. Its postbuild hook checks exported Markdown and live route behavior. Upload the contents of `out/` through the project's Create deployment form, or with authorized Wrangler credentials:
+Build settings:
 
-```sh
-wrangler pages deploy out --project-name=transitionai --branch=main
-```
+- Framework: None (Next.js static export)
+- Root directory: repository root
+- Build command: `pnpm install --frozen-lockfile && pnpm check`
+- Output directory: `out`
+- `NODE_VERSION`: `22.23.2`
+- `PNPM_VERSION`: `11.11.0`
+- `SKIP_DEPENDENCY_INSTALL`: `true`
 
-Direct Upload projects cannot switch to Cloudflare's built-in Git integration. GitHub Actions can deploy via Wrangler later.
+`pnpm check` runs lint, type checking, a static production build, and the automatic Markdown export/live-route validation hook. GitHub Actions runs the same checks on pushes and pull requests. Only `out/` is published; environment files and generated build output are excluded from Git.
 
-After uploading, verify `/`, `/approach`, `/approach/design-questions`, `/api/search`, `/llms.mdx/approach/index`, `/llms.txt`, `/robots.txt`, and a nonexistent page. Verify the custom domain and HTTPS before announcing launch. Preserve Email Routing MX/TXT records when configuring the website's DNS.
+## Migration status
 
-Public indexing is enabled in both page metadata and `robots.txt`; canonicals and sitemap use `transitioned.dev`.
+The original Direct Upload project `transitionai` continues serving the live domain while the Git-connected project is configured and verified. The public repository and GitHub build checks are ready. Domain cutover remains pending.
 
-## Current status
-
-Published on November 2, 2026 via Direct Upload (76 files). Cloudflare reports `transitioned.dev` Active with SSL enabled. Public DNS resolves to Cloudflare. HTTPS checks using the published DNS address returned 200 for the homepage, both research pages, search JSON, both Markdown routes, llms.txt, robots.txt, and sitemap.xml; an unknown path returned 404. Search results were verified in the browser on the Pages address. The local system/browser DNS cache still held an earlier negative lookup during verification; ordinary custom-domain browsing may require cache expiry. No paid services were enabled.
+Preserve Email Routing MX/TXT records during domain changes. Verify HTTPS, the main and research pages, search, Markdown routes, robots, sitemap, and an unknown-path 404 after cutover.
 
 ## Rollback
 
-Use the Pages deployment history to roll back to a previously successful production deployment. Keep the last known-good release artifact before updating.
-
-## GitHub Actions
-
-Repository: `transitionai/website`. Pushes to `main` and manual workflow runs on `main` run lint, type checking, the static build, and Markdown route checks before deploying. Pull requests run the same checks without deployment credentials. Actions are pinned to commit SHAs.
-
-Configure repository variable `CLOUDFLARE_ACCOUNT_ID` and repository secret `CLOUDFLARE_API_TOKEN`. The token needs Account / Cloudflare Pages / Edit on the hosting account only. Never commit the token. After configuring it, rerun the workflow and verify its production deployment. Builds and deployments run on GitHub-hosted runners; no laptop process is needed.
+Use Cloudflare Pages deployment history to roll back to a successful production deployment. The original Direct Upload project is retained during migration.
