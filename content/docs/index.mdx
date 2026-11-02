@@ -1,0 +1,46 @@
+---
+title: The approach
+description: Our starting point for moving from human-native to agent-native work.
+---
+
+We are in the idea and market research stage. These notes explain what we intend to build and the questions we are working through. The product is not yet available.
+
+## From human-native to agent-native
+
+Transition aims to help teams move from human-native to agent-native workflows: analyzing data in natural language, preparing codebases for coding agents, and supporting on-call work.
+
+## Tools teams can adopt individually
+
+- **Natural-language data analysis and decision-making.** Ask questions about a dataset in plain language and use the results to inform decisions.
+- **Agent-ready codebases.** Make architecture decision records, specifications, and shared skills usable by coding agents directly in a repository. This does not require a company-wide context layer.
+- **Continuous on-call AI agents.** Help teams investigate incidents using relevant operational sources. The scope of autonomous actions and human oversight still needs to be defined.
+
+We intend for teams to use each tool independently, with the data and sources relevant to that task.
+
+## Shared company context, where it helps
+
+Some workflows benefit from knowledge across conversations, documents, and project systems. We are exploring a shared context capability for those cases. Teams would use it when a task needs information from several parts of the company.
+
+A coding workflow can start with architecture decision records already in its repository. Broader company knowledge can be connected when it adds value. We still need to work out the connectors and access rules.
+
+## Design goals
+
+**Run on your infrastructure.** We intend to support self-hosting for teams working with sensitive data. Deployment requirements, operational ownership, and boundaries remain to be worked out.
+
+**Work across models.** The tools should be independent of one model provider. We have not yet validated compatibility with specific providers, models, or agent tools.
+
+**Open source by design.** We intend to make the platform open source. No product repository or release is available yet.
+
+## Sensitive data needs explicit boundaries
+
+Self-hosting a context layer does not automatically mean all data stays on a company's infrastructure. Using an external model can send context to that provider. Each deployment would need explicit decisions about permitted data, model endpoints, credentials, access, storage, and retention.
+
+Security controls and compliance requirements still need to be designed, implemented, and reviewed.
+
+## What we want to learn
+
+We are talking to teams about their data, coding, and on-call workflows, what they have built internally, and where existing tools fall short.
+
+If this is a problem you are working through, [email the founders](mailto:hello@transitioned.dev?subject=Talking%20about%20Transition).
+
+[Read the open design questions](/approach/design-questions).

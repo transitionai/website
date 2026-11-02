@@ -1,0 +1,12 @@
+/api/search
+  Content-Type: application/json; charset=utf-8
+
+/llms.mdx/approach/*
+  Content-Type: text/plain; charset=utf-8
+  Content-Disposition: inline
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+
+/llms-full.txt
+  Content-Type: text/plain; charset=utf-8

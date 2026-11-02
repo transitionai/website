@@ -1,0 +1,40 @@
+---
+title: Open design questions
+description: Open questions about useful, trustworthy tools for agent-native work.
+---
+
+These are the questions we are working through before building the product.
+
+## What does each workflow need?
+
+A data analysis tool, an agent-ready repository, and an on-call agent have different inputs and responsibilities. We need to understand how each can be useful on its own, and when connecting broader company knowledge adds value. Architecture decision records in a repository are one example of a starting point that does not require company-wide context.
+
+## What belongs in optional shared context?
+
+Which decisions, documents, conversations, and project records make a meaningful difference to an AI task? How can we distinguish current guidance from abandoned ideas, duplicates, and historical records?
+
+## How should access work?
+
+A shared layer must account for different people and tools having different access. We need to determine how source permissions, service identities, changes in membership, and revoked access should be represented and enforced.
+
+## How does context stay current?
+
+Sources change. Documents are edited, decisions are replaced, and data is deleted. We need to understand freshness requirements and how changes or deletion should propagate.
+
+## Can a team inspect the answer?
+
+Teams need to understand where context came from and whether it still applies. We need to work out how to show the original sources and handle information that is incomplete or contradictory.
+
+## Where may data go?
+
+Self-hosted infrastructure and external model APIs have different boundaries. Teams need to decide which data can be sent to which endpoint, and how those decisions can be made visible and enforceable.
+
+## Who operates the system?
+
+Self-hosting creates operational work. Deployment, updates, backup, monitoring, and incident recovery need to be practical for the teams this product is intended to serve.
+
+## What would make this worth adopting?
+
+We want evidence that each tool improves real work enough to justify adopting it. Our research starts with existing workflows. Shared context should be added where it helps, not required by default.
+
+[Talk to the founders](mailto:hello@transitioned.dev?subject=Talking%20about%20Transition) if your team is working through similar questions.
