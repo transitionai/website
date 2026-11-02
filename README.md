@@ -27,7 +27,7 @@ Before release, preview the export with a local static server and review desktop
 
 ## Deployment readiness
 
-Published on November 2, 2026 on Cloudflare Pages using Direct Upload. The custom domain is active with SSL enabled. GitHub Actions checks pushes and pull requests. Cloudflare Pages builds and deploys through its GitHub app; see `docs/deployment.md` for connection status.
+Published on November 2, 2026; migrated to Git-connected Cloudflare Pages on November 3, 2026. GitHub Actions checks pushes and pull requests. Cloudflare Pages automatically builds and deploys pushes to `main` through its GitHub app; see `docs/deployment.md` for settings.
 
 Release maintenance:
 

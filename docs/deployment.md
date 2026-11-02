@@ -5,7 +5,7 @@ Website: https://transitioned.dev
 
 ## Git-connected Cloudflare Pages
 
-The target deployment uses the installed Cloudflare Workers and Pages GitHub app. Cloudflare builds commits pushed to `main`; no laptop process or GitHub API-token secret is required.
+The deployment uses the installed Cloudflare Workers and Pages GitHub app. Cloudflare builds commits pushed to `main`; no laptop process or GitHub API-token secret is required.
 
 Build settings:
 
@@ -19,9 +19,13 @@ Build settings:
 
 `pnpm check` runs lint, type checking, a static production build, and the automatic Markdown export/live-route validation hook. GitHub Actions runs the same checks on pushes and pull requests. Only `out/` is published; environment files and generated build output are excluded from Git.
 
-## Migration status
+## Production project
 
-The original Direct Upload project `transitionai` continues serving the live domain while the Git-connected project is configured and verified. The public repository and GitHub build checks are ready. Domain cutover remains pending.
+- Project: `transition-website`
+- Pages hostname: `https://transition-website-c5r.pages.dev`
+- Production branch: `main`
+
+The first Git-connected deployment passed on November 3, 2026 (Asia/Karachi), building commit `50c1d56` on Cloudflare. Its main pages, search JSON, Markdown routes, robots, and sitemap returned 200 with the expected content types; an unknown path returned 404. The custom domain has been moved to this project. The original Direct Upload project `transitionai` is retained as a fallback.
 
 Preserve Email Routing MX/TXT records during domain changes. Verify HTTPS, the main and research pages, search, Markdown routes, robots, sitemap, and an unknown-path 404 after cutover.
 
